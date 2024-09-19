@@ -1,4 +1,6 @@
+![header](images/header.jpg)
 ### Hi there 👋
+
 
 #### 👷 Check out what I'm currently working on
 {{range recentContributions 10}}
