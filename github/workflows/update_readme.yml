@@ -1,40 +1,37 @@
-
-name: Update README all day at 17:00
+name: Update README all day at 04:04
 
 on:
-  push:             # Exécuter à chaque push
-  workflow_dispatch:  # Permet de déclencher manuellement le workflow
-  schedule:          # Planification quotidienne à 04:04 UTC
-    - cron: '17 0 * * *'
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: '04 4 * * *'  # Exécuter chaque jour à 04:04 UTC
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]  # Utilisation de Node.js version 14.x
 
     steps:
-      - uses: actions/checkout@v3  # Checkout du code
+      # 1. Checkout the repository
+      - uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      # 2. Set up Node.js (version 18.19.1)
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}  # Installation de Node.js
+          node-version: '18.19.1'
 
-      - name: Update README.md file
+      # 3. Run the index.js script to update README.md
+      - name: Run update script
         run: |
-          node index.js > README.md  # Exécution de ton script node qui met à jour le README
-        env:
-          CI: true  # Assure que l'environnement est bien en mode CI
+          node index.js
 
+      # 4. Commit changes (remplacement de l'ancienne action)
       - name: Commit changes
-        uses: EndBug/add-and-commit@v4  # Utilisation de l'action pour ajouter et committer
-        with:
-          author_name: lmdr19
-          author_email: laurent.mordier@gmail.com
-          force: false
-          signoff: false
-          message: ':memo: README.md updated by OctoCommiter'  # Message du commit
+        run: |
+          git config --local user.name "Your Name"
+          git config --local user.email "your-email@example.com"
+          git add .
+          git commit -m ":memo: README.md updated by OctoCommitter"
+          git push
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Utilisation du token GitHub généré automatiquement
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
