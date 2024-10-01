@@ -4,7 +4,7 @@ on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: '16 50 * *'  # Exécuter chaque jour à 04:04 UTC
+    - cron: '50 16 * * *'  # Exécuter chaque jour à 16:50 UTC
 
 jobs:
   update-readme:
@@ -25,7 +25,7 @@ jobs:
         run: |
           node index.js
 
-      # 4. Commit changes (remplacement de l'ancienne action)
+      # 4. Commit changes
       - name: Commit changes
         run: |
           git config --local user.name "lmdr19"
