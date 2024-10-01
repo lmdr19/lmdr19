@@ -53,5 +53,5 @@ Last update on <#today_date>
 
 <#day_before_new_years> days before New Year's Day 🎉
 
-<#gabot_signing>
+<#octocommiter_signing>
 `;
