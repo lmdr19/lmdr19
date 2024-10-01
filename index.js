@@ -20,7 +20,7 @@ function generateNewREADME() {
   const identifierToUpdate = {
     day_before_new_years: getDBNWSentence(),
     today_date: getTodayDate(),
-    gabot_signing: getGabotSigning(),
+    octo_signing: getOctoSigning(),
   };
 
   Object.entries(identifierToUpdate).forEach(([key, value]) => {
