@@ -1,0 +1,11 @@
+{
+  "name": "readme-updater",
+  "version": "1.0.0",
+  "description": "A bot to automatically update the README.md file",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
