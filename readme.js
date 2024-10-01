@@ -47,7 +47,7 @@ Simplify your daily note-taking process.
 
 <img src="https://profile-counter.glitch.me/id_ProLM/count.svg" />
 
-Added on: \`Mon 3 Jan 2022\`
+Added on: \`Tue 1 Oct 2024\`
 
 Last update on <#today_date>
 
