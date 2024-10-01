@@ -1,37 +1,38 @@
-name: Update README all day at 17:20
+name: Update README all day at 17:40
 
 on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: '20 17 * * *'  # Exécuter chaque jour à 16:50 UTC
+    - cron: '40 17 * * *'  # Exécution quotidienne à  UTC
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        node-version: [18.x]  # Tu peux aussi utiliser 18.x si nécessaire
     steps:
-      # 1. Checkout the repository
       - uses: actions/checkout@v3
 
-      # 2. Set up Node.js (version 18.19.1)
-      - name: Set up Node.js
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: '18.19.1'
+          node-version: ${{ matrix.node-version }}
 
-      # 3. Run the index.js script to update README.md
-      - name: Run update script
+      - name: Update README.md file
         run: |
-          node index.js
-
-      # 4. Commit changes
-      - name: Commit changes
-        run: |
-          git config --local user.name "lmdr19"
-          git config --local user.email "laurent.mordier@gmail.com"
-          git add .
-          git commit -m ":memo: README.md updated by OctoCommitter"
-          git push
+          node index.js > README.md
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CI: true
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v4
+        with:
+          author_name: lmdr19
+          author_email: laurent.mordier@gmail.com
+          force: false
+          signoff: false
+          message: ':memo: README.md updated by OctoCommiter'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Assure-toi que ton GITHUB_TOKEN est bien configuré
