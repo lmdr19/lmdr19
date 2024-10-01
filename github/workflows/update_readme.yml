@@ -1,11 +1,11 @@
 
-name: Update README all day at 08:00
+name: Update README all day at 17:00
 
 on:
   push:             # Exécuter à chaque push
   workflow_dispatch:  # Permet de déclencher manuellement le workflow
   schedule:          # Planification quotidienne à 04:04 UTC
-    - cron: '08 0 * * *'
+    - cron: '17 0 * * *'
 
 jobs:
   update-readme:
