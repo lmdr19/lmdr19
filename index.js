@@ -2,7 +2,6 @@ const { promises: fs } = require('fs');
 const readme = require('./readme');
 
 const msInOneDay = 1000 * 60 * 60 * 24;
-
 const today = new Date();
 
 function generateNewREADME() {
@@ -20,7 +19,7 @@ function generateNewREADME() {
   const identifierToUpdate = {
     day_before_new_years: getDBNWSentence(),
     today_date: getTodayDate(),
-    octo_signing: getOctoSigning(),
+    octo_signing: getOctoSigning(),  // Utilisation de la fonction getOctoSigning
   };
 
   Object.entries(identifierToUpdate).forEach(([key, value]) => {
@@ -41,7 +40,8 @@ const moodByDay = {
 };
 
 function getOctoSigning() {
-  const mood = moodByDay[today.getDay() + 1];
+  const dayOfWeek = today.getDay() === 0 ? 7 : today.getDay();  // Dimanche devient 7
+  const mood = moodByDay[dayOfWeek];
   return `🤖 This README.md is updated with ${mood}, by OctoCommitter ❤️`;
 }
 
@@ -50,7 +50,7 @@ function getTodayDate() {
 }
 
 function getMySelf() {
-  // test if we are in a PAIR DAY
+  // Vérifie si nous sommes dans un jour pair
   return today.getDate() % 2 === 0
     ? Math.floor(Math.random() * 2)
       ? 'penguin 🐧'
@@ -60,7 +60,7 @@ function getMySelf() {
 
 function getDBNWSentence() {
   const nextYear = today.getFullYear() + 1;
-  const nextYearDate = new Date(String(nextYear));
+  const nextYearDate = new Date(nextYear, 0, 1);  // 1er janvier de l'année prochaine
 
   const timeUntilNewYear = nextYearDate.getTime() - today.getTime();
   const dayUntilNewYear = Math.round(timeUntilNewYear / msInOneDay);
@@ -71,11 +71,19 @@ function getDBNWSentence() {
 const findIdentifierIndex = (rows, identifier) =>
   rows.findIndex((r) => Boolean(r.match(new RegExp(`<#${identifier}>`, 'i'))));
 
-const updateREADMEFile = (text) => fs.writeFile('./README.md', text);
+const updateREADMEFile = async (text) => {
+  try {
+    await fs.writeFile('./README.md', text);
+    console.log('README.md successfully updated!');
+  } catch (error) {
+    console.error('Error updating README.md:', error);
+  }
+};
 
-function main() {
+async function main() {
   const newREADME = generateNewREADME();
   console.log(newREADME);
-  updateREADMEFile(newREADME);
+  await updateREADMEFile(newREADME);
 }
+
 main();
