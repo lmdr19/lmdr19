@@ -1,0 +1,40 @@
+
+name: Update README all day at 17:00
+
+on:
+  push:             # Exécuter à chaque push
+  workflow_dispatch:  # Permet de déclencher manuellement le workflow
+  schedule:          # Planification quotidienne à 04:04 UTC
+    - cron: '17 0 * * *'
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]  # Utilisation de Node.js version 14.x
+
+    steps:
+      - uses: actions/checkout@v3  # Checkout du code
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}  # Installation de Node.js
+
+      - name: Update README.md file
+        run: |
+          node index.js > README.md  # Exécution de ton script node qui met à jour le README
+        env:
+          CI: true  # Assure que l'environnement est bien en mode CI
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v4  # Utilisation de l'action pour ajouter et committer
+        with:
+          author_name: lmdr19
+          author_email: laurent.mordier@gmail.com
+          force: false
+          signoff: false
+          message: ':memo: README.md updated by OctoCommiter'  # Message du commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Utilisation du token GitHub généré automatiquement
