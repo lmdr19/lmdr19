@@ -1,11 +1,23 @@
 {
-  "name": "readme-updater",
+  "name": "lmdr19",
   "version": "1.0.0",
-  "description": "A bot to automatically update the README.md file",
+  "description": "A bot to automatically update the README.md file. I represent myself as a penguin 🐧 and I work at QoQa.ch as otter 🦦. Web, mobile backend, I try to touch everything. I prefer the web for now.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Your Name",
-  "license": "MIT"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lmdr19/lmdr19.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lmdr19/lmdr19/issues"
+  },
+  "homepage": "https://github.com/lmdr19/lmdr19#readme",
+  "devDependencies": {
+    "eslint": "^7.30.0"
+  }
 }
