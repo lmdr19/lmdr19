@@ -40,9 +40,9 @@ const moodByDay = {
   7: 'love',
 };
 
-function getGabotSigning() {
+function getOtoSigning() {
   const mood = moodByDay[today.getDay() + 1];
-  return `🤖 This README.md is updated with ${mood}, by Gabot ❤️`;
+  return `🤖 This README.md is updated with ${mood}, by OctoCommitter ❤️`;
 }
 
 function getTodayDate() {
