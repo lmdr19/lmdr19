@@ -1,4 +1,16 @@
-module.exports = `### Hello there! 👋
+// Importation du module fs pour écrire dans README.md
+const fs = require('fs');
+
+// Fonction pour obtenir la date actuelle au format désiré
+const today = new Date();
+const todayDate = today.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+// Calcul des jours restants avant le Nouvel An
+const newYear = new Date(today.getFullYear() + 1, 0, 1);
+const daysBeforeNewYear = Math.floor((newYear - today) / (1000 * 60 * 60 * 24));
+
+// Contenu du README avec les valeurs dynamiques
+const content = `### Hello there! 👋
 
 I develop web applications and share my journey with the world. You can follow me on [Twitter](https://twitter.com/id_ProLM) for daily updates and cool tech content!
 
@@ -47,11 +59,14 @@ Simplify your daily note-taking process.
 
 <img src="https://profile-counter.glitch.me/id_ProLM/count.svg" />
 
-Added on: \`Tue 1 Oct 2024\`
+Added on: Tue 1 Oct 2024
 
-Last update on <#today_date>
+Last update on ${todayDate}
 
-<#day_before_new_years> days before New Year's Day 🎉
+${daysBeforeNewYear} days before New Year's Day 🎉
 
-<#octocommiter_signing>
+✨ Powered by OctoCommiter
 `;
+
+// Écriture du contenu dans README.md
+fs.writeFileSync('README.md', content);
