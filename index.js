@@ -37,8 +37,45 @@ function generateNewREADME() {
   return readmeRow.join("\n");
 }
 
-// Autres fonctions...
-// Gardez ici les fonctions getOctoSigning, getTodayDate, getMySelf, getDBNWSentence
+// Définition de la fonction getDBNWSentence
+function getDBNWSentence() {
+  const nextYear = today.getFullYear() + 1;
+  const nextYearDate = new Date(nextYear, 0, 1); // 1er janvier de l'année prochaine
+
+  const timeUntilNewYear = nextYearDate.getTime() - today.getTime();
+  const dayUntilNewYear = Math.round(timeUntilNewYear / msInOneDay);
+
+  return `**${dayUntilNewYear} days before ${nextYear} ⏱**`;
+}
+
+// Définition des autres fonctions nécessaires
+function getTodayDate() {
+  return today.toDateString();
+}
+
+const moodByDay = {
+  1: "hate",
+  2: "wickedness",
+  3: "pleasure",
+  4: "wickedness",
+  5: "cruelty",
+  6: "horror",
+  7: "love",
+};
+
+function getOctoSigning() {
+  const dayOfWeek = today.getDay() === 0 ? 7 : today.getDay(); // Dimanche devient 7
+  const mood = moodByDay[dayOfWeek];
+  return `🤖 This README.md is updated with ${mood}, by OctoCommitter ❤️`;
+}
+
+function getMySelf() {
+  return today.getDate() % 2 === 0
+    ? Math.floor(Math.random() * 2)
+      ? "penguin 🐧"
+      : "bear 🐻"
+    : "penguin bear 🐧🐻";
+}
 
 const findIdentifierIndex = (rows, identifier) =>
   rows.findIndex((r) => Boolean(r.match(new RegExp(`<#${identifier}>`, "i"))));
