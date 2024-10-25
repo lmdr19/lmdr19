@@ -1,9 +1,14 @@
 // Importation du module fs pour écrire dans README.md
-const fs = require('fs');
+const fs = require("fs");
 
 // Fonction pour obtenir la date actuelle au format désiré
 const today = new Date();
-const todayDate = today.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+const todayDate = today.toLocaleDateString("fr-FR", {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 
 // Calcul des jours restants avant le Nouvel An
 const newYear = new Date(today.getFullYear() + 1, 0, 1);
@@ -65,8 +70,8 @@ Last update on ${todayDate}
 
 ${daysBeforeNewYear} days before New Year's Day 🎉
 
-✨ Powered by OctoCommiter
+✨ Powered by OctoCommiter ❤️
 `;
 
 // Écriture du contenu dans README.md
-fs.writeFileSync('README.md', content);
+fs.writeFileSync("README.md", content);

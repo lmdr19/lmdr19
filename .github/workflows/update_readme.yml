@@ -1,17 +1,17 @@
-name: Update README all day at 17:40
+name: Update README all day at 08:00
 
 on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: '40 17 * * *'  # Exécution quotidienne à  UTC
+    - cron: "0 8 * * *" # Exécution quotidienne à  UTC
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]  # Tu peux aussi utiliser 18.x si nécessaire
+        node-version: [18.x] # Tu peux aussi utiliser 18.x si nécessaire
     steps:
       - uses: actions/checkout@v3
 
@@ -33,6 +33,6 @@ jobs:
           author_email: laurent.mordier@gmail.com
           force: false
           signoff: false
-          message: ':memo: README.md updated by OctoCommiter'
+          message: ":memo: README.md updated by OctoCommiter"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Assure-toi que ton GITHUB_TOKEN est bien configuré
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Assure-toi que ton GITHUB_TOKEN est bien configuré
