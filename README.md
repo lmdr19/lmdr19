@@ -49,8 +49,8 @@ Simplify your daily note-taking process.
 
 Added on: Tue 1 Oct 2024
 
-Last update on <today_date>
+Last update on lundi 28 octobre 2024
 
-<days_before_new_year> days before New Year's Day 🎉
+64 days before New Year's Day 🎉
 
 ✨ Powered by OctoCommiter ❤️
