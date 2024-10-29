@@ -13,17 +13,17 @@ const todayDate = today.toLocaleDateString("fr-FR", {
 const newYear = new Date(today.getFullYear() + 1, 0, 1);
 const daysBeforeNewYear = Math.floor((newYear - today) / (1000 * 60 * 60 * 24));
 
-// Lecture du contenu actuel du README.md
-let readme;
+// Lecture du modèle README.md.tpl
+let template;
 try {
-  readme = fs.readFileSync("README.md", "utf-8");
+  template = fs.readFileSync("templates/README.md.tpl", "utf-8");
 } catch (error) {
-  console.error("Erreur lors de la lecture de README.md :", error);
+  console.error("Erreur lors de la lecture de README.md.tpl :", error);
   process.exit(1);
 }
 
 // Remplacement des balises dynamiques
-const updatedContent = readme
+const updatedContent = template
   .replace(/<today_date>/g, todayDate)
   .replace(/<days_before_new_year>/g, daysBeforeNewYear.toString());
 
