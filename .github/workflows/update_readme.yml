@@ -1,10 +1,10 @@
-name: Update README all day at 11:30
+name: Update README all day at 11:55
 
 on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: "30 11 * * *" # Exécution quotidienne à 11h05 UTC
+    - cron: "55 11 * * *" # Exécution quotidienne à 11h30 UTC
 
 jobs:
   update-readme:
@@ -17,11 +17,21 @@ jobs:
         with:
           node-version: "20.x"
 
+      - name: Check README content before update
+        run: |
+          echo "Contenu de README.md avant mise à jour :"
+          cat README.md
+
       - name: Update README.md file
         run: |
-          node index.js > README.md
+          node index.js
         env:
           CI: true
+
+      - name: Check README content after update
+        run: |
+          echo "Contenu de README.md après mise à jour :"
+          cat README.md
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v4
