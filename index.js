@@ -1,4 +1,3 @@
-// Importation du module fs pour lire et écrire dans README.md
 const fs = require("fs");
 
 // Fonction pour obtenir la date actuelle
@@ -25,8 +24,8 @@ try {
 
 // Remplacement des balises dynamiques
 const updatedContent = readme
-  .replace(/<today_date>/g, todayDate) // Remplace <today_date> par la date actuelle
-  .replace(/<days_before_new_year>/g, daysBeforeNewYear); // Remplace <days_before_new_year> par les jours avant le Nouvel An
+  .replace(/<today_date>/g, todayDate)
+  .replace(/<days_before_new_year>/g, daysBeforeNewYear.toString());
 
 // Écriture du contenu mis à jour dans README.md
 fs.writeFileSync("README.md", updatedContent);
